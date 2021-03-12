@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+<img th:src="@{/img/avatar.png}" style="width:100px;"/>
+<h1 class="title">Lista de Vagas</h1>
+
+<table border="1" class="table table-dark">
+    <tr>
+    	<th>Logo</th>
+        <th>Nome</th>
+        <th>Descricao</th>
+        <th>Data</th>
+        <th>Salario</th>
+        <th>Destacada</th>
+        <th>Detalhes</th>
+        <th>Excluir</th>
+    </tr>
+    <tr th:each=" vg : ${vagas}">
+    <td>
+    	<img th:src="@{/img/{v_imagem}(v_imagem=${vg.imagem}) }" width="50" height="50" />
+    </td>
+        <td th:text="${vg.nome}"></td>
+        <td th:text="${vg.descricao}"></td>
+        <td th:text="${vg.data}"></td>
+        <td th:text="${vg.salario}"></td>
+<!--         <td th:text="${vg.destacado == 1} ? 'sim' : 'não' "></td> -->
+   		<td>
+   			<span th:if="${vg.destacado == 1}" class="badge badge-success">Sim</span>
+   			<span th:unless="${vg.destacado == 1}" class="badge badge-danger">Não</span>
+   		</td>
+   		<td>
+   			<a th:href="@{/vagas/view/{id} (id=${vg.id})}" class="btn btn-success">Detalhes</a>
+   		</td>
+   		<td>
+   			<a th:href="@{/vagas/deletar(id=${vg.id})}" class="btn btn-danger">Excluir</a>
+   		</td>
+    </tr>
+</table>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
