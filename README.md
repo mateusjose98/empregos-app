@@ -5,4 +5,4 @@ Software adaptado desenvolvido durante "Spring Framework 5 &amp; Spring Boot 2 -
 Home:
 
 
-![] https://github.com/mateusjose98/empregos-app/blob/main/img-layout/screenshot_2.png
+![](https://github.com/mateusjose98/empregos-app/blob/main/img-layout/screenshot_2.png)
