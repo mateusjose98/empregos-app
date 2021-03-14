@@ -6,3 +6,17 @@ Home:
 
 
 ![](https://github.com/mateusjose98/empregos-app/blob/main/img-layout/screenshot_2.png)
+
+
+
+
+# Tecnologias utilizadas
+## Back end
+- Java
+- Spring MVC
+- JPA / Hibernate
+- Maven
+## Front end
+- HTML / CSS / JS 
+- BootStrap 4
+- Template Engine: Thymeleaf
