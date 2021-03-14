@@ -9,5 +9,8 @@ public interface IVagasService {
 	List<Vaga> buscarTodas();
 	
 	Vaga buscarPorId(Integer id);
+	
+	
+	void salvar(Vaga vaga);
 
 }

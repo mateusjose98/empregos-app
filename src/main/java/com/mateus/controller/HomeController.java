@@ -55,16 +55,7 @@ public class HomeController {
 	@GetMapping("/")
 	public String mostrarHome(Model model) {
 		
-		/*
-		model.addAttribute("mensagem","José Mateus");
-		model.addAttribute("dataAtual", new Date());
-		*/
-		String nome = "Programador";
-		Date dPub = new Date();
-		double salario = 10000;
-		boolean disponivel = true;
-		model.addAttribute("nome", nome);
-		model.addAttribute("salario", salario);
+		model.addAttribute("vagas", serviceVagas.buscarTodas());		
 		
 		return "home";
 	}

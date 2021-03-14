@@ -1,20 +1,63 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 
-	
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
 
-</head>
-<body>
+    <title>EmpleosApp | Detalles de la Oferta de Trabajo</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
+    <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
+  </head>
 
-<h1>Detalhe da oferta de trabalho: </h1>
+  <body>
 
-<h3 th:text="'Nome: ' + ${vaga.nome}"></h3>
-<h3 th:text="'Data: ' + ${vaga.data}"></h3>
-<h3 th:text="'Salário oferecido: ' + ${vaga.salario}"></h3>
-<h3 th:text="'Descrição da Vaga: ' + ${vaga.descricao}"></h3>
+ <header th:insert="fragments/menu.html :: menu-principal"></header>
 
-</body>
+    <main role="main">
+      <hr>
+      <div class="container"> 
+
+        <div class="row">
+          <div class="col-md-3">            
+            <img class="rounded mx-auto d-block" th:src="@{/images/{img}(img=${vaga.imagem})}" alt="Generic placeholder image" width="220" height="220">            
+          </div>
+          <div class="col-md-9">
+            <div class="card">
+              <h4 class="card-header">Aplicar para <strong th:text="${vaga.nome}">Ingeniero Civil</strong></h4>              
+              <div class="card-body">
+                <h5 class="card-title"><strong>Categoria: </strong> <span>Nombre la categoría</span></h5>
+                <h6 class="card-title"><strong>Publicado: </strong> <span th:text="${vaga.data}">2019-01-01 </span></h6>                
+                <h6 class="card-title"><strong>Salario Ofrecido: </strong><span th:text="${vaga.salario}">$9000</span></h6>
+                <p class="card-text" th:text="${vaga.descricao}">La descripción corta de la oferta de trabajo</p>
+                
+                <div class="card bg-light mb-3" >
+                  <div class="card-body">
+                    <h5 class="card-title">Detalles de la oferta de trabajo</h5>
+                    <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                  </div>
+                </div>   
+                <a class="btn btn-primary" href="#" role="button" title="Quiero aplicar para esta oferta de trabajo."><i class="fas fa-file" aria-hidden="true"></i> Aplicar</a>                            
+              </div>
+            </div>  
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+      <footer th:insert="fragments/footer.html :: footer-principal" class="footer"></footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+  </body>
 </html>

@@ -20,17 +20,16 @@ public class CategoriasController {
 	}
 	
 
-	// @GetMapping("/index")
 	@RequestMapping(value="/index", method=RequestMethod.GET)
 	public String mostrarIndex(Model model) {
-	return "categorias/listCategorias";
+		return "categorias/listCategorias";
 	}
-	// @GetMapping("/create")
+	
 	@RequestMapping(value="/create", method=RequestMethod.GET)
 	public String criar() {
-	return "categorias/formCategoria";
+		return "categorias/formCategoria";
 	}
-	// @PostMapping("/save")
+	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public String guardar(@RequestParam("nome") String nome,@RequestParam("descricao") String descricao) {
 		System.out.println("Categoria: " + nome);

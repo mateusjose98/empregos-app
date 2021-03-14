@@ -11,7 +11,32 @@ public class Vaga {
 	private Double salario;
 	private Integer destacado;
 	private String imagem = "no-image.png";
+	private String status;
+	private String detalhes;
 	
+
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+
+	public String getDetalhes() {
+		return detalhes;
+	}
+
+
+	public void setDetalhes(String detalhes) {
+		this.detalhes = detalhes;
+	}
+
+
 	public String getImagem() {
 		return imagem;
 	}
@@ -80,8 +105,11 @@ public class Vaga {
 	@Override
 	public String toString() {
 		return "Vaga [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", data=" + data + ", salario="
-				+ salario + "]";
+				+ salario + ", destacado=" + destacado + ", imagem=" + imagem + ", status=" + status + ", detalhes="
+				+ detalhes + "]";
 	}
+
+
 	
 	
 	
