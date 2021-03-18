@@ -8,12 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mateus.model.Vaga;
 import com.mateus.service.IVagasService;
@@ -69,13 +72,23 @@ public class VagasController {
 //	}
 	
 	@PostMapping("/save")
-	public String salvar(Vaga vaga) {
+	public String salvar(Vaga vaga, BindingResult result, RedirectAttributes attributes) {
+		
+		if(result.hasErrors()) {
+			for(ObjectError error : result.getAllErrors()) {
+				System.out.println("Ocorreu um erro: " + error.getDefaultMessage());
+			}
+			
+			return "vagas/formVagas";
+		}
 		serviceVagas.salvar(vaga);
-		return "vagas/listVagas";
+		attributes.addFlashAttribute("msg", "REGISTRADO!");
+		return "redirect:/vagas/index";
 	}
 	
+	
 	@GetMapping("/criar")
-	public String criar() {
+	public String criar(Vaga vaga) {
 		return "vagas/formVagas";
 	}
 
