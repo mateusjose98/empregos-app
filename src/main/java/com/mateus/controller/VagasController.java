@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mateus.model.Vaga;
+import com.mateus.service.ICategoriaService;
 import com.mateus.service.IVagasService;
 
 @Controller
@@ -28,6 +29,9 @@ public class VagasController {
 	
 	@Autowired
 	private IVagasService serviceVagas;
+	
+	@Autowired
+	private ICategoriaService serviceCategorias;
 	
 	@GetMapping("/index")
 	public String mostrarIndex(Model model) {
@@ -50,27 +54,7 @@ public class VagasController {
 	}
 	
 	
-//	@PostMapping("/save")
-//	public String salvar(
-//			@RequestParam("nome") String nome,
-//			@RequestParam("descricao") String descricao,
-//			@RequestParam("status") String status,
-//			@RequestParam("data") String data,
-//			@RequestParam("destacado") Integer destacado,
-//			@RequestParam("salario") double salario,
-//			@RequestParam("detalhes") String detalhes
-//			) {
-//		
-//		System.out.println(nome);
-//		System.out.println(descricao);
-//		System.out.println(status);
-//		System.out.println(data);
-//		System.out.println(destacado);
-//		System.out.println(salario);
-//		System.out.println(detalhes);
-//		return "vagas/listVagas";
-//	}
-	
+
 	@PostMapping("/save")
 	public String salvar(Vaga vaga, BindingResult result, RedirectAttributes attributes) {
 		
@@ -88,7 +72,8 @@ public class VagasController {
 	
 	
 	@GetMapping("/criar")
-	public String criar(Vaga vaga) {
+	public String criar(Vaga vaga, Model model) {
+		model.addAttribute("categorias", serviceCategorias.buscarTodas());
 		return "vagas/formVagas";
 	}
 

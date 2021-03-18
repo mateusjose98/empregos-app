@@ -14,7 +14,20 @@ public class Vaga {
 	private String status;
 	private String detalhes;
 	
+	//uma Vaga tem uma Categoria
+	private Categoria categoria;
+	
 
+
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
 
 
 	public String getStatus() {
@@ -104,7 +117,7 @@ public class Vaga {
 
 	@Override
 	public String toString() {
-		return "Vaga [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", data=" + data + ", salario="
+		return "Vaga, categoria:"+ categoria +  "[id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", data=" + data + ", salario="
 				+ salario + ", destacado=" + destacado + ", imagem=" + imagem + ", status=" + status + ", detalhes="
 				+ detalhes + "]";
 	}
