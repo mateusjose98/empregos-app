@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,16 +17,21 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mateus.model.Vaga;
 import com.mateus.service.ICategoriaService;
 import com.mateus.service.IVagasService;
+import com.mateus.util.Utilitario;
 
 @Controller
 @RequestMapping("/vagas")
 public class VagasController {
 	
+	@Value("${empregos.rota.imagens}")
+	private String rota;
 	
 	@Autowired
 	private IVagasService serviceVagas;
@@ -56,7 +62,10 @@ public class VagasController {
 	
 
 	@PostMapping("/save")
-	public String salvar(Vaga vaga, BindingResult result, RedirectAttributes attributes) {
+	public String salvar(Vaga vaga, 
+						BindingResult result, 
+						RedirectAttributes attributes,
+						@RequestParam("arquivoImagem") MultipartFile multiPart) {
 		
 		if(result.hasErrors()) {
 			for(ObjectError error : result.getAllErrors()) {
@@ -65,6 +74,17 @@ public class VagasController {
 			
 			return "vagas/formVagas";
 		}
+		
+		if (!multiPart.isEmpty()) {
+			String rota = this.rota;
+			
+			String nomeImagem = Utilitario.salvarArquivo(multiPart, rota);
+			if (nomeImagem != null){ // O upload foi feito
+			// Temos a imagem nomeImagem disponivel para salvar
+				vaga.setImagem(nomeImagem);
+			}
+		}
+		
 		serviceVagas.salvar(vaga);
 		attributes.addFlashAttribute("msg", "REGISTRADO!");
 		return "redirect:/vagas/index";

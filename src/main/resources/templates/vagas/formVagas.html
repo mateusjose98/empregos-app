@@ -27,7 +27,7 @@
         <div class="card">
           <h4 class="card-header"><strong>Dados da oferta de trabalho</strong></h4>              
           <div class="card-body">
-            <form th:action="@{/vagas/save}" method="post" th:object="${vaga}"> 
+            <form  enctype="multipart/form-data" th:action="@{/vagas/save}" method="post" th:object="${vaga}"> 
             
             <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>
 				Um ou mais campos estão preenchido de forma incorreta:
@@ -52,7 +52,6 @@
                 </div>   
               </div> 
               
-<!--               teste    -->
               <div class="row">
                 <div class="col-md-3"> 
                   <div class="form-group">
@@ -103,7 +102,7 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="archivoImagen">Imagem</label>
-                    <input type="file" class="form-control-file" name="imagem" id="imagem">
+                    <input type="file" class="form-control-file" name="arquivoImagem" id="arquivoImagem">
                   </div>
                 </div>
               </div> 
