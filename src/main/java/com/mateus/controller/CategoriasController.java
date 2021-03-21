@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mateus.model.Categoria;
-import com.mateus.service.CategoriaServiceImpl;
 import com.mateus.service.ICategoriaService;
 
 @Controller

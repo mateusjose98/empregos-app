@@ -2,8 +2,21 @@ package com.mateus.model;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Vaga")
 public class Vaga {
 	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 	private String descricao;
@@ -15,6 +28,12 @@ public class Vaga {
 	private String detalhes;
 	
 	//uma Vaga tem uma Categoria
+	
+	
+//	@Transient --> // ignora o atributo no bootstrap da aplicação
+	
+	@OneToOne
+	@JoinColumn(name = "Categoria_id")
 	private Categoria categoria;
 	
 
