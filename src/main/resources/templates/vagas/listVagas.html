@@ -52,7 +52,7 @@
                   <td th:text="${vaga.status}">Creada</td>
                   <td th:text="${vaga.destacado == 1} ? 'Sim' : 'Não'">SI</td>
                   <td>
-                    <a href="#" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    <a th:href="@{/vagas/editar/{idVaga} (idVaga=${vaga.id})}" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
                     <a th:href="@{/vagas/deletar/{id} (id=${vaga.id})}" onclick="return confirm('Tem certeza?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
                   </td>
                 </tr>

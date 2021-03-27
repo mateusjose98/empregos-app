@@ -14,6 +14,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +39,13 @@ public class VagasController {
 	
 	@Autowired
 	private ICategoriaService serviceCategorias;
+	
+	
+	@ModelAttribute
+	public void setGenericos(Model model) {
+		model.addAttribute("categorias", serviceCategorias.buscarTodas());
+		
+	}
 	
 	@GetMapping("/index")
 	public String mostrarIndex(Model model) {
@@ -93,7 +101,6 @@ public class VagasController {
 	
 	@GetMapping("/criar")
 	public String criar(Vaga vaga, Model model) {
-		model.addAttribute("categorias", serviceCategorias.buscarTodas());
 		return "vagas/formVagas";
 	}
 
@@ -114,4 +121,15 @@ public class VagasController {
 		redirect.addFlashAttribute("msg", "Vaga excluída!");
 		return "redirect:/vagas/index";
 	}
+	
+	
+	@GetMapping("/editar/{idVaga}")
+	public String editar(@PathVariable("idVaga") int id, Model model) {
+		model.addAttribute("vaga", serviceVagas.buscarPorId(id));
+		return "vagas/formVagas";
+	}
+	
+	
+	
+	
 }

@@ -41,6 +41,8 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="nombre">Nome</label>
+                    <input type="hidden" th:field="*{id}">
+                    <input type="hidden" th:field="*{imagem}">
                     <input type="text" th:field="*{nome}" class="form-control" id="nome" name="nome" placeholder="Titulo de la oferta de trabajo" required="required">
                   </div>
                 </div>
@@ -116,7 +118,7 @@
                 </div> 
                 <div class="col-md-3">
                   <label for="imagen">Imagem/Logo</label>
-                  <img class="rounded mx-auto d-block" src="images/construccion-logo.png" alt="Generic placeholder image" width="200" height="200">            
+                  <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vaga.imagem}) }" alt="Generic placeholder image" width="200" height="200">            
                 </div>
               </div> 
               <button type="submit" class="btn btn-primary">Salvar</button>  
