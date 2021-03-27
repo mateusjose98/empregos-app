@@ -26,13 +26,13 @@
 
         <div class="row">
           <div class="col-md-3">            
-            <img class="rounded mx-auto d-block" th:src="@{/images/{img}(img=${vaga.imagem})}" alt="Generic placeholder image" width="220" height="220">            
+            <img class="rounded mx-auto d-block" th:src="@{/logos/{img}(img=${vaga.imagem})}" alt="Generic placeholder image" width="220" height="220">            
           </div>
           <div class="col-md-9">
             <div class="card">
               <h4 class="card-header">Aplicar para <strong th:text="${vaga.nome}">Ingeniero Civil</strong></h4>              
               <div class="card-body">
-                <h5 class="card-title"><strong>Categoria: </strong> <span>Nombre la categoría</span></h5>
+                <h5 class="card-title"><strong>Categoria: </strong> <span th:text="${vaga.categoria.nome}">Nombre la categoría</span></h5>
                 <h6 class="card-title"><strong>Publicado: </strong> <span th:text="${vaga.data}">2019-01-01 </span></h6>                
                 <h6 class="card-title"><strong>Salario Ofrecido: </strong><span th:text="${vaga.salario}">$9000</span></h6>
                 <p class="card-text" th:text="${vaga.descricao}">La descripción corta de la oferta de trabajo</p>
@@ -40,7 +40,7 @@
                 <div class="card bg-light mb-3" >
                   <div class="card-body">
                     <h5 class="card-title">Detalles de la oferta de trabajo</h5>
-                    <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                    <p th:utext="${vaga.detalhes}" class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
                   </div>
                 </div>   
                 <a class="btn btn-primary" href="#" role="button" title="Quiero aplicar para esta oferta de trabajo."><i class="fas fa-file" aria-hidden="true"></i> Aplicar</a>                            

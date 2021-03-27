@@ -57,11 +57,11 @@
         
         <div style="box-shadow:  #a6dced 0px 2px 8px 0px !important; margin:30px;padding:30px; brospadding:15px; cursor: pointer;" class="row" th:each="vaga : ${vagas}">
           <div class="col-md-3">            
-            <img class="rounded mx-auto d-block" th:src="@{images/{img}(img=${vaga.imagem})}" alt="Generic placeholder image" width="200" height="200">            
+            <img class="rounded mx-auto d-block" th:src="@{/logos/{img}(img=${vaga.imagem})}" alt="Generic placeholder image" width="200" height="200">            
           </div>
           <div class="col-md-9">
             <h2 th:text="${vaga.nome}">Arquiteto</h2>
-            <h6 class="card-title"><strong>Categoria: </strong> <span>Arquitetura</span></h6>
+            <h6 class="card-title"><strong>Categoria: </strong> <span th:text="${vaga.categoria.nome}">Arquitetura</span></h6>
             <h6 class="card-title"><strong>Publicado: </strong> <span th:text="${vaga.data}">2019-01-01</span></h6>                
             <p th:text="${vaga.descricao}">Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
             <p><a class="btn btn-secondary" th:href="@{/vagas/view/{id} (id=${vaga.id})}" role="button">Detalhes &raquo;</a></p>            

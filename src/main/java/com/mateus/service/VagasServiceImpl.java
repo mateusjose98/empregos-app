@@ -94,4 +94,18 @@ public class VagasServiceImpl implements IVagasService{
 		this.vagas.add(vaga);
 	}
 
+
+	@Override
+	public List<Vaga> buscarDestaques() {
+		
+		return null;
+	}
+
+
+	@Override
+	public void deletar(Integer id) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

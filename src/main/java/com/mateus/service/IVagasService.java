@@ -8,8 +8,11 @@ public interface IVagasService {
 	
 	List<Vaga> buscarTodas();
 	
+	List<Vaga> buscarDestaques();
+	
 	Vaga buscarPorId(Integer id);
 	
+	void deletar(Integer id);
 	
 	void salvar(Vaga vaga);
 

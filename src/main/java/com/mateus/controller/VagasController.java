@@ -106,4 +106,12 @@ public class VagasController {
 		//Buscar os detalhes da vaga na base de dados
 		return "vagas/detalhe";
 	}
+	
+	
+	@GetMapping("/deletar/{idVaga}")
+	public String deletar(@PathVariable("idVaga") int idVaga, RedirectAttributes redirect) {
+		serviceVagas.deletar(idVaga);
+		redirect.addFlashAttribute("msg", "Vaga excluída!");
+		return "redirect:/vagas/index";
+	}
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.mateus.model.Vaga;
 import com.mateus.service.IVagasService;
@@ -53,9 +54,15 @@ public class HomeController {
 
 	@GetMapping("/")
 	public String mostrarHome(Model model) {
-		
-		model.addAttribute("vagas", serviceVagas.buscarTodas());		
-		
 		return "home";
 	}
+	
+	@ModelAttribute
+	public void setGenericos(Model model) {
+		model.addAttribute("vagas", serviceVagas.buscarDestaques());		
+	}
+	
+	
+	
+	
 }

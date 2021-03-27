@@ -8,13 +8,15 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>EmpleosApp | Listado de Ofertas de Trabajo</title>
+    <title>VagaX | Lista de Ofertas de Trabalho</title>
     <!-- Bootstrap core CSS -->
     <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link th:href="@{/bootstrap/css/jumbotron.css}" rel="stylesheet">
     <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
-    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css}" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+    
+    
   </head>
 
   <body>
@@ -25,33 +27,33 @@
       <div class="container"> 
 
         <div class="card">
-          <h4 class="card-header"><strong>Listado de Ofertas de Trabajo</strong></h4>              
+          <h4 class="card-header"><strong>Lista de Ofertas de Trabalho</strong></h4>              
           <div class="card-body">
-            <a class="btn btn-primary" href="/vagas/criar" title="Crear nueva Oferta de Trabajo" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nueva</a>            
+            <a class="btn btn-primary" href="/vagas/criar" title="Crear nueva Oferta de Trabajo" role="button"><i class="fas fa-file" aria-hidden="true"></i> Nova</a>            
             <hr>
             <div th:if="${msg != null}" class="alert alert-success" roles="alert" th:text="${msg}"></div>
             
             <table class="table table-hover">
               <thead class="thead-light">
                 <tr>
-                  <th scope="col">Categoría</th>
-                  <th scope="col">Nombre</th>                  
-                  <th scope="col">Fecha Pub.</th>
-                  <th scope="col">Estatus</th>
-                  <th scope="col">Destacada</th>
-                  <th scope="col">Operaciones</th>
+                  <th scope="col">Categoria</th>
+                  <th scope="col">Nome</th>                  
+                  <th scope="col">Data Public.</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Destaque</th>
+                  <th scope="col">Ações</th>
                 </tr>
               </thead>
               <tbody>
                 <tr th:each="vaga : ${vagas}">
-                  <td>Ventas</td>
+                  <td th:text="${vaga.categoria.nome}"></td>
                   <td th:text="${vaga.nome}">Supervisor de Ventas</td>                  
                   <td th:text="${vaga.data}">11-01-2019</td>
                   <td th:text="${vaga.status}">Creada</td>
                   <td th:text="${vaga.destacado == 1} ? 'Sim' : 'Não'">SI</td>
                   <td>
                     <a href="#" class="btn btn-success btn-sm" role="button" title="Editar el registro."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
-                    <a href="#" onclick="return confirm('¿Estas seguro?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    <a th:href="@{/vagas/deletar/{id} (id=${vaga.id})}" onclick="return confirm('Tem certeza?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
                   </td>
                 </tr>
                
