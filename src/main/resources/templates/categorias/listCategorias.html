@@ -23,8 +23,8 @@
     <main role="main">     
       <hr>
       <div class="container"> 
-      
-     
+       <div th:if="${msg != null}" class="alert alert-success" roles="alert" th:text="${msg}"></div>
+       <div th:if="${err != null}" class="alert alert-danger" roles="alert" th:text="${err}"></div>
 		<div  th:if="${sucesso != null}" class="alert alert-success" roles="alert"  th:text="${sucesso}"></div>
         <div class="card">
           <h4 class="card-header"><strong>Listado de Categorías</strong></h4>              
@@ -42,12 +42,12 @@
               </thead>
               <tbody>
                 <tr th:each="categoria, i : ${categorias}">
-                  <th th:text="${i.index + 1}" scope="row">1</th>
+                  <th th:text="${categoria.id}" scope="row">1</th>
                   <td th:text="${categoria.nome}"></td>
                   <td th:text="${categoria.descricao}">Trabajos relacionados con el area de RH.</td>
                   <td>
-                    <a href="#" class="btn btn-success btn-sm" role="button" title="Editar"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
-                    <a href="#" onclick="return confirm('Tem certeza?')" class="btn btn-success btn-sm" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    <a th:href="@{/categorias/editar/{id} (id=${categoria.id})}" class="btn btn-success btn-sm" role="button" title="Editar"><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                    <a th:href="@{/categorias/delete/{id} (id=${categoria.id})}" onclick="return confirm('Tem certeza?')" class="btn btn-success btn-sm" role="button" title="Eliminar"><i class="fas fa-trash" aria-hidden="true"></i></a>
                   </td>
                 </tr>
                              

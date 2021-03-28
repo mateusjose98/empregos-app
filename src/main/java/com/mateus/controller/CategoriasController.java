@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -43,6 +44,26 @@ public class CategoriasController {
 		serviceCategoria.salvar(categoria);
 		
 		return "redirect:/categorias/index";
+	}
+	
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	public String deletarCategoria(@PathVariable("id") Integer id, RedirectAttributes redirect) {
+		Boolean deleteSuccess = serviceCategoria.deletar(id);
+		
+		if (deleteSuccess) {
+			redirect.addFlashAttribute("msg", "Categoria deletada!");			
+		} else {			
+			redirect.addFlashAttribute("err", "Categoria não pode ser deletada pois há vagas vinculadas a ela!");	
+		}
+		
+		return "redirect:/categorias/index";
+	}
+	
+	@RequestMapping(value = "editar/{id}", method = RequestMethod.GET)
+	public String editar(@PathVariable("id") Integer id, Model model) {
+		Categoria categoria = serviceCategoria.buscarPorId(id);
+		model.addAttribute("categoria", categoria);
+		return "categorias/formCategoria";
 	}
 	
 }

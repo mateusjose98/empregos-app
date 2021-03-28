@@ -71,4 +71,12 @@ public class CategoriaServiceImpl implements ICategoriaService{
 		return null;
 	}
 
+
+
+	@Override
+	public Boolean deletar(Integer idCategoria) {
+		return true;
+		
+	}
+
 }

@@ -9,5 +9,6 @@ public interface ICategoriaService {
 	void salvar(Categoria categoria);
 	List<Categoria> buscarTodas();
 	Categoria buscarPorId(Integer idCategoria);
+	Boolean deletar(Integer idCategoria);
 
 }
