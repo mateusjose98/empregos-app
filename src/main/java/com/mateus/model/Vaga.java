@@ -132,6 +132,10 @@ public class Vaga {
 	public void setDestacado(Integer destacado) {
 		this.destacado = destacado;
 	}
+	
+	public void reset() {
+		this.imagem = null;
+	}
 
 
 	@Override
