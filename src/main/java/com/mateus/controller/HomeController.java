@@ -1,16 +1,19 @@
 package com.mateus.controller;
 
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mateus.model.Perfil;
+import com.mateus.model.Usuario;
 import com.mateus.model.Vaga;
+import com.mateus.service.IUsuarioService;
 import com.mateus.service.IVagasService;
 
 @Controller
@@ -18,12 +21,26 @@ public class HomeController {
 	@Autowired
 	private IVagasService serviceVagas;
 	
-	@GetMapping("/tabela")
-	public String tabelaVagas(Model model) {
-		
-		model.addAttribute("vagas", serviceVagas.buscarTodas());		
-		return "vagas";
+	@Autowired
+	private IUsuarioService userService;
+	
+
+	
+	@GetMapping("/usuarios/singup")
+	public String registrarSe(Usuario usuario) {
+		return "usuarios/formRegistro";
 	}
+	
+	
+	@PostMapping("/usuarios/singup")
+	public String salvarRegistro(Usuario usuario, RedirectAttributes redirect) {
+	
+		userService.salvar(usuario);
+		redirect.addFlashAttribute("msg", "Usuario cadastrado!");
+		return "redirect:/usuarios/index";
+	}
+	
+
 	
 	
 	
@@ -39,18 +56,7 @@ public class HomeController {
 		return "detalhe";
 	}
 	
-	
-	@GetMapping("/lista")
-	public String mostrarListado(Model model) {
-		List<String> lista = new LinkedList<>();
-		lista.add("Programador PHP");
-		lista.add("Analista de Sistemas Java");
-		lista.add("Data Science - Python");
-		
-		model.addAttribute("empregos", lista);
-		
-		return "listados";
-	}
+
 
 	@GetMapping("/")
 	public String mostrarHome(Model model) {

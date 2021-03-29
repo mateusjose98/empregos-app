@@ -29,9 +29,9 @@ public class Usuario {
 	
 	private String password;
 	
-	private Date dataRegistro;
+	private Date dataRegistro = new Date();
 	
-	private Integer Status;
+	private Integer Status = 1;
 	
 	
 	@ManyToMany(fetch=FetchType.EAGER)
