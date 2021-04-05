@@ -1,12 +1,15 @@
 package com.mateus.controller;
 
-import java.util.Date;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -33,10 +36,23 @@ public class HomeController {
 	@Autowired
 	private ICategoriaService serviceCategoria;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	@GetMapping("/")
+	public String mostrarHome(Model model) {
+		
+		return "home";
+	}
+	
+	@GetMapping("/login")
+	public String mostrarLogin() {
+		return "formLogin";
+	}
 
 	
 	@GetMapping("/usuarios/singup")
-	public String registrarSe(Usuario usuario) {
+	public String registrarSe() {
 		return "usuarios/formRegistro";
 	}
 	
@@ -44,44 +60,49 @@ public class HomeController {
 	@PostMapping("/usuarios/singup")
 	public String salvarRegistro(Usuario usuario, RedirectAttributes redirect) {
 	
+		String pass = usuario.getPassword();
+		String passEncriptado = passwordEncoder.encode(pass);
+		
+		System.out.println(passwordEncoder.encode("12345"));
+		
+		usuario.setPassword(passEncriptado);
 		userService.salvar(usuario);
-		redirect.addFlashAttribute("msg", "Usuario cadastrado!");
+		redirect.addFlashAttribute("msg", "Usuário " + usuario.getNome() +" foi cadastrado!");
 		return "redirect:/usuarios/index";
 	}
 	
-
-	
-	
-	
-	@GetMapping("/detalhes")
-	public String mostrarDetalhes(Model model) {
-		Vaga vaga = new Vaga();
-		vaga.setNome("Programador");
-		vaga.setDescricao("Vaga PJ Junior");
-		vaga.setSalario(5000.00);
-		vaga.setData(new Date());
-		model.addAttribute("vaga", vaga);
+	@GetMapping("/index")
+	public String mostrarIndex(Authentication auth, HttpSession session) {
+		String userName = auth.getName();
 		
-		return "detalhe";
+		if(session.getAttribute("usuario") == null) {
+			Usuario us = userService.buscarPorUserName(userName);
+			us.setPassword(null);
+			session.setAttribute("usuario", us);
+			System.out.println(us);
+		}
+		return "redirect:/";
 	}
 	
-
-
-	@GetMapping("/")
-	public String mostrarHome(Model model) {
-		return "home";
-	}
 	
+	
+	
+	//Busca da tela inicial por descrição ou por categorias
 	@GetMapping("/search")
 	public String buscar(@ModelAttribute("search") Vaga vaga, Model model) {
-		System.out.println(vaga);
-		ExampleMatcher matcher = ExampleMatcher.matching() // where descricao like '%?%'
+		
+		ExampleMatcher matcher = ExampleMatcher.matching() // where descricao like '%?%', este método pode ser melhorado (@Query)
 												.withMatcher("descricao", ExampleMatcher.GenericPropertyMatchers.contains());
 		Example<Vaga> example = Example.of(vaga, matcher);
+		
 		List<Vaga> lista = serviceVagas.buscarByExemplo(example);
-		model.addAttribute("vagas", lista );
+		
+		model.addAttribute("vagas", lista ); //lista de vagas é passada para o Model e renderizada em "home"
+		
 		return "home";
 	}
+	
+	
 	
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
@@ -90,13 +111,14 @@ public class HomeController {
 	
 	
 	
-	@ModelAttribute
+	@ModelAttribute // objetos iniciais
 	public void setGenericos(Model model) {
 		Vaga vaga = new Vaga();
 		vaga.reset();
 		model.addAttribute("search", vaga);
 		model.addAttribute("vagas", serviceVagas.buscarDestaques());		
 		model.addAttribute("categorias", serviceCategoria.buscarTodas());
+		model.addAttribute("usuario",new Usuario());
 	}
 	
 	

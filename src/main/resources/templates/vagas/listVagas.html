@@ -17,6 +17,23 @@
     <link th:href="@{/bootstrap/css/sticky-footer-navbar.css}" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
     
+    <style>
+    
+
+			
+			.page-link-adapted {
+			  position: relative;
+			  display: block;
+			  padding: 0.5rem 0.75rem;
+			  margin-left: -1px;
+			  line-height: 1.25;
+			  color: gray;
+			  background-color: #fff;
+			  border: 1px solid #dee2e6;
+			  pointer-events: none;
+			}
+    </style>
+    
     
   </head>
 
@@ -65,8 +82,8 @@
             
             <nav th:if="${vagas.totalPages > 0}" aria-label="Page navigation example" >
 				<ul class="pagination">
-				<li class="page-item"><a th:href="@{/vagas/indexPaginate(page=${vagas.number - 1})}" class="page-link">Anterior</a></li>
-				<li class="page-item"><a th:href="@{/vagas/indexPaginate(page=${vagas.number + 1})}" class="page-link">Pŕoximo</a></li>
+				<li class="page-item"><a th:classappend="${vagas.number <= 0 ? 'page-link-adapted' : 'page-link' }" th:href="@{/vagas/indexPaginate(page=${vagas.number - 1})}">Anterior</a></li>
+				<li class="page-item"><a th:classappend="${vagas.number >= vagas.totalPages-1 ? 'page-link-adapted' : 'page-link' }" th:href="@{/vagas/indexPaginate(page=${vagas.number + 1})}">Pŕoximo</a></li>
 				</ul>
 			</nav>
             

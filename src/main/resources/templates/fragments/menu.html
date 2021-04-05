@@ -6,20 +6,20 @@
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Início</a>
-            </li>
-            <li class="nav-item">
+
+            <li  sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')" class="nav-item">
               <a class="nav-link" href="/vagas/indexPaginate">Vagas</a>
             </li>
-            <li class="nav-item">
+            <li  sec:authorize="hasAnyAuthority('SUPERVISOR','ADMINISTRADOR')" class="nav-item">
               <a class="nav-link" href="/categorias/index">Categorias</a>
             </li>  
-            <li class="nav-item">
-              <a class="nav-link" href="/usuarios/index">Usuarios</a>
+            <li  sec:authorize="hasAnyAuthority('ADMINISTRADOR')" class="nav-item">
+              <a class="nav-link" href="/usuarios/index">Usuários</a>
             </li>          
           </ul>  
-          <a class="btn btn-primary" href="#">Login</a>&nbsp;
-          <a class="btn btn-primary" href="/usuarios/singup">Registrar-se</a>
+          <div th:if = "${session.usuario != null}" th:text="'Bem vindo, ' + ${session.usuario.nome}" class="text-light" style="margin-right:10px"></div>
+          <a class="btn btn-primary" th:href="@{/index}">Login</a>&nbsp;
+          <a class="btn btn-primary" th:href="@{/usuarios/singup}">Registrar-se</a>
+           <a class="btn btn-primary" th:href="@{/logout}">Sair</a>
         </div>
  </nav>

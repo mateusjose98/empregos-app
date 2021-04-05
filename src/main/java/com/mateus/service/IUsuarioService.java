@@ -12,4 +12,6 @@ public interface IUsuarioService {
 	
 	List<Usuario> buscarTodos();
 
+	Usuario buscarPorUserName(String userName);
+
 }
