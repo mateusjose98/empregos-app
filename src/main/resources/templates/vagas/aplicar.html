@@ -19,50 +19,50 @@
   <body>
 
  <header th:insert="fragments/menu.html :: menu-principal"></header>
-
-    <main role="main">
+<main role="main">     
       <hr>
       <div class="container"> 
-
         <div class="row">
           <div class="col-md-3">            
             <img class="rounded mx-auto d-block" th:src="@{/logos/{img}(img=${vaga.imagem})}" alt="Generic placeholder image" width="220" height="220">            
           </div>
           <div class="col-md-9">
             <div class="card">
-              <h4 class="card-header">Aplicar para <strong th:text="${vaga.nome}">Ingeniero Civil</strong></h4>              
+              <h4 class="card-header"><strong></strong></h4>              
               <div class="card-body">
-                <h5 class="card-title"><strong>Categoria: </strong> <span th:text="${vaga.categoria.nome}"></span></h5>
-                <h6 class="card-title"><strong>Publicado: </strong> <span th:text="${vaga.data}"></span></h6>                
+                <h5 class="card-title"><strong>Categoría: </strong><span th:text="${vaga.categoria.nome}"></span></h5>
+                <h6 class="card-title"><strong>Publicado: </strong><span th:text="${vaga.data}"></span></h6>
                 <h6 class="card-title"><strong>Salario Ofrecido: </strong><span th:text="${vaga.salario}"></span></h6>
                 <p class="card-text" th:text="${vaga.descricao}"></p>
-                
-                <div class="card bg-light mb-3" >
-                  <div class="card-body">
-                    <h5 class="card-title"></h5>
-                    <p th:utext="${vaga.detalhes}" class="card-text"></p>
-                  </div>
-                </div>  
-                
-                <div sec:authorize="isAnonymous()">
-					<div>Quer aplicar para a vaga? realize o login!</div>
-				</div>
-                
-                <div sec:authorize="isAuthenticated()">
-					 <a class="btn btn-primary" th:href="@{/vagas/aplicar/{id} (id=${vaga.id})}" role="button" title="Quiero aplicar para esta oferta de trabajo.">
-					 <i class="fas fa-file" aria-hidden="true"></i>
-					 Aplicar</a> 
-				</div>
-                 
-                                          
+                <hr>
+                <form>                                                 
+                  <div class="row">
+                    <div class="col-md-6"> 
+                      <div class="form-group">
+                        <label for="comentarios">Comentarios</label>
+                        <textarea class="form-control" name="comentarios" id="comentarios" rows="2"></textarea>
+                      </div> 
+                    </div> 
+                    <div class="col-md-6"> 
+                      <div class="form-group">
+                        <label for="archivoCV">Curriculm Vitae</label>
+                        <input type="file" class="form-control-file" name="archivoCV" id="archivoCV">
+                        <p class="help-block">Arquivo pdf</p>
+                      </div>
+                    </div>
+                  </div> 
+                  <hr>
+                  <button type="submit" title="Enviar mi Solicitud." class="btn btn-primary">Enviar</button>  
+                </form>
               </div>
-            </div>  
+            </div> 
           </div>
         </div>
+      </div> <!-- /container -->
 
-      </div>
     </main>
 
+  
       <footer th:insert="fragments/footer.html :: footer-principal" class="footer"></footer>
 
     <!-- Bootstrap core JavaScript

@@ -43,6 +43,13 @@ public class VagasController {
 	private ICategoriaService serviceCategorias;
 	
 	
+	@GetMapping("/aplicar/{id}")
+	public String aplicar(@PathVariable("id") Integer id, Model model) {
+		model.addAttribute("vaga", serviceVagas.buscarPorId(id));
+		return "vagas/aplicar";
+	}
+	
+	
 	@ModelAttribute
 	public void setGenericos(Model model) {
 		model.addAttribute("categorias", serviceCategorias.buscarTodas());
