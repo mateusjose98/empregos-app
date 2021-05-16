@@ -2,6 +2,7 @@ package com.mateus.model;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,17 +16,18 @@ public class Solicitacao {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	@Column(name = "data")
 	private Date data_aplicacao;
 	private String arquivo;
 	
 	private String comentarios;
 	
 	@ManyToOne
-	@JoinColumn(name = "fk_usuario")
+	@JoinColumn(name = "Usuario_id")
 	private Usuario usuario;
 	
 	@ManyToOne
-	@JoinColumn(name = "fk_vaga")
+	@JoinColumn(name = "Vaga_id")
 	private Vaga vaga;
 	
 
@@ -122,6 +124,14 @@ public class Solicitacao {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Solicitacao [id=" + id + ", data_aplicacao=" + data_aplicacao + ", arquivo=" + arquivo
+				+ ", comentarios=" + comentarios + ", usuario=" + usuario + ", vaga=" + vaga + "]";
+	}
+	
+
 	
 	
 	

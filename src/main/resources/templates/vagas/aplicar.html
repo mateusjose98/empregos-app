@@ -30,12 +30,12 @@
             <div class="card">
               <h4 class="card-header"><strong></strong></h4>              
               <div class="card-body">
-                <h5 class="card-title"><strong>Categoría: </strong><span th:text="${vaga.categoria.nome}"></span></h5>
+                <h5 class="card-title"><strong>Categoria: </strong><span th:text="${vaga.categoria.nome}"></span></h5>
                 <h6 class="card-title"><strong>Publicado: </strong><span th:text="${vaga.data}"></span></h6>
-                <h6 class="card-title"><strong>Salario Ofrecido: </strong><span th:text="${vaga.salario}"></span></h6>
+                <h6 class="card-title"><strong>Salario Oferecido: </strong><span th:text="${vaga.salario}"></span></h6>
                 <p class="card-text" th:text="${vaga.descricao}"></p>
                 <hr>
-                <form>                                                 
+                <form method="post" enctype="multipart/form-data" th:action="@{/solicitacao/{id} (id=${vaga.id})}">                                                 
                   <div class="row">
                     <div class="col-md-6"> 
                       <div class="form-group">
@@ -46,7 +46,7 @@
                     <div class="col-md-6"> 
                       <div class="form-group">
                         <label for="archivoCV">Curriculm Vitae</label>
-                        <input type="file" class="form-control-file" name="archivoCV" id="archivoCV">
+                        <input type="file" class="form-control-file" name="cv" id="cv">
                         <p class="help-block">Arquivo pdf</p>
                       </div>
                     </div>

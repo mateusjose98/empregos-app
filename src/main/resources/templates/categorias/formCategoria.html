@@ -28,7 +28,7 @@
       <div class="container"> 
 
         <div class="card">
-          <h4 class="card-header"><strong>Datos de la categoría</strong></h4>              
+          <h4 class="card-header"><strong>Cadastrando uma nova categoria</strong></h4>              
           <div class="card-body">
            <form method="post" th:object="${categoria}" th:action="@{/categorias/save}">  
                        
@@ -36,7 +36,7 @@
                 <div class="col-md-6"> 
                   <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Escriba el nombre de la categoria" required="required">
+                    <input type="text" class="form-control" id="nome" th:field="*{nome}" placeholder="Nome da categoria" required="required">
            			<input type="hidden" th:field=*{id}>
                   </div>
                 </div>                
@@ -44,13 +44,13 @@
               <div class="row">
                 <div class="col-md-6"> 
                   <div class="form-group">
-                    <label for="descripcion">Descripción</label>
+                    <label for="descripcion">Descrição</label>
                     <textarea class="form-control" th:field="*{descricao}" id="descricao" rows="2"></textarea>
                   </div> 
                 </div>                
               </div> 
               <hr>
-              <button type="submit" title="Guardar el registro." class="btn btn-primary">Guardar</button>  
+              <button type="submit" title="Guardar el registro." class="btn btn-primary">Salvar</button>  
             </form>
           </div>
         </div>

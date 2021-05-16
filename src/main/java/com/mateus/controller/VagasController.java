@@ -19,11 +19,13 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mateus.model.Solicitacao;
 import com.mateus.model.Vaga;
 import com.mateus.service.ICategoriaService;
 import com.mateus.service.IVagasService;
@@ -41,6 +43,7 @@ public class VagasController {
 	
 	@Autowired
 	private ICategoriaService serviceCategorias;
+	
 	
 	
 	@GetMapping("/aplicar/{id}")

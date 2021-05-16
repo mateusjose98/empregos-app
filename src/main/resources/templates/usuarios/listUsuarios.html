@@ -46,14 +46,14 @@
               </thead>
               <tbody>
                 <tr th:each="usuario : ${usuarios}">
-                  <td th:text="${usuario.nome}">Iván Eliseo Tinajero Díaz</td>
-                  <td th:text="${usuario.username}">itinajero</td>                  
-                  <td th:text="${usuario.email}">ivanetinajero@gmail.com</td>
+                  <td th:text="${usuario.nome}"></td>
+                  <td th:text="${usuario.username}"></td>                  
+                  <td th:text="${usuario.email}"></td>
                   <td th:text="${usuario.status == 1}  ? 'ATIVO' : 'DESATIVADO' " ></td>
                   <td>         
-                    <a th:href="@{/usuarios/delete/{id}(id=${usuario.id})}" onclick="return confirm('Tem certeza?')" class="btn btn-success btn-sm" role="button" title="Eliminar el registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
-                    <a href="#" onclick="return confirm('¿Quiere bloquear el acceso al usuario?')" class="btn btn-success btn-sm" role="button" title="Bloquear el acceso al sistema para este usuario."><i class="fas fa-lock" aria-hidden="true"></i></a>	
-                    <a href="#" onclick="return confirm('¿Desea desbloquear el usuario?')" class="btn btn-success btn-sm" role="button" title="Permitir el acceso al sistema a este usuario."><i class="fas fa-unlock" aria-hidden="true"></i></a>
+                    <a th:href="@{/usuarios/delete/{id}(id=${usuario.id})}" onclick="return confirm('Tem certeza?')" class="btn btn-success btn-sm" role="button" title="Apagar registro."><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    <a href="#" onclick="return confirm('Tem certeza do bloqueio para este usuário?')" class="btn btn-success btn-sm" role="button" title="Bloquear usuário?"><i class="fas fa-lock" aria-hidden="true"></i></a>	
+                    <a href="#" onclick="return confirm('Dejesa desbloquar o usuário?')" class="btn btn-success btn-sm" role="button" title="Desbloqueio."><i class="fas fa-unlock" aria-hidden="true"></i></a>
                   </td>
                 </tr>
                 

@@ -80,12 +80,12 @@
             </table>
             
             
-            <nav th:if="${vagas.totalPages > 0}" aria-label="Page navigation example" >
-				<ul class="pagination">
-				<li class="page-item"><a th:classappend="${vagas.number <= 0 ? 'page-link-adapted' : 'page-link' }" th:href="@{/vagas/indexPaginate(page=${vagas.number - 1})}">Anterior</a></li>
-				<li class="page-item"><a th:classappend="${vagas.number >= vagas.totalPages-1 ? 'page-link-adapted' : 'page-link' }" th:href="@{/vagas/indexPaginate(page=${vagas.number + 1})}">Pŕoximo</a></li>
-				</ul>
-			</nav>
+<!--             <nav th:if="${vagas.totalPages > 0}" aria-label="Page navigation example" > -->
+<!-- 				<ul class="pagination"> -->
+<!-- 				<li class="page-item"><a th:classappend="${vagas.number <= 0 ? 'page-link-adapted' : 'page-link' }" th:href="@{/vagas/indexPaginate(page=${vagas.number - 1})}">Anterior</a></li> -->
+<!-- 				<li class="page-item"><a th:classappend="${vagas.number >= vagas.totalPages-1 ? 'page-link-adapted' : 'page-link' }" th:href="@{/vagas/indexPaginate(page=${vagas.number + 1})}">Pŕoximo</a></li> -->
+<!-- 				</ul> -->
+<!-- 			</nav> -->
             
           </div>
         </div>

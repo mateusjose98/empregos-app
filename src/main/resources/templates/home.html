@@ -42,9 +42,7 @@
           </form>
           </div>
           
-<!--           <div  style="display:inline-block;"> -->
-<!--           	<img alt="imagemPessoasTrabalho" th:src="@{images/5017941.jpg}" style="width:400px; height:400px"> -->
-<!--           </div> -->
+			 <div th:if="${msg != null}" class="alert alert-success" roles="alert" th:text="${msg}"></div>
           
         </div>
       </div>

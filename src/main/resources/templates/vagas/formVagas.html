@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>EmpleosApp | Creación de Ofertas de Trabajo</title>
+    <title>VagaX</title>
     <!-- Bootstrap core CSS -->
     <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -43,13 +43,13 @@
                     <label for="nombre">Nome</label>
                     <input type="hidden" th:field="*{id}">
                     <input type="hidden" th:field="*{imagem}">
-                    <input type="text" th:field="*{nome}" class="form-control" id="nome" name="nome" placeholder="Titulo de la oferta de trabajo" required="required">
+                    <input type="text" th:field="*{nome}" class="form-control" id="nome" name="nome" placeholder="Titulo da oferta de trabalho" required="required">
                   </div>
                 </div>
                 <div class="col-md-9"> 
                   <div class="form-group">
                     <label for="descripcion">Descrição</label>
-                    <input type="text" class="form-control" id="descricao" th:field="*{descricao}" name="descricao" placeholder="Breve descripcion de la oferta de trabajo" required="required">
+                    <input type="text" class="form-control" id="descricao" th:field="*{descricao}" name="descricao" placeholder="Descrição da oferta" required="required">
                   </div> 
                 </div>   
               </div> 
@@ -79,7 +79,7 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="fecha">Data de Publicação</label>
-                    <input type="text" class="form-control" name="data" th:field="*{data}" id="data" placeholder="Fecha de publicacion" required="required">
+                    <input type="text" class="form-control" name="data" th:field="*{data}" id="data" placeholder="Data da publicação" required="required">
                   </div>  
                 </div>
                 <div class="col-md-3"> 
@@ -98,7 +98,7 @@
                 <div class="col-md-3"> 
                   <div class="form-group">
                     <label for="salario">Salário (Aprox)</label>
-                    <input type="text" class="form-control" th:field="*{salario}" name="salario" id="salario" placeholder="Salario aproximado." required="required">
+                    <input type="text" class="form-control" th:field="*{salario}" name="salario" id="salario" placeholder="Salário aprox." required="required">
                   </div>
                 </div>
                 <div class="col-md-3"> 
@@ -118,7 +118,7 @@
                 </div> 
                 <div class="col-md-3">
                   <label for="imagen">Imagem/Logo</label>
-                  <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vaga.imagem}) }" alt="Generic placeholder image" width="200" height="200">            
+                  <img class="rounded mx-auto d-block" th:src="@{/logos/{img} (img=${vaga.imagem}) }" alt="logo da empresa" width="200" height="200">            
                 </div>
               </div> 
               <button type="submit" class="btn btn-primary">Salvar</button>  
